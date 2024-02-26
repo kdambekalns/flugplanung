@@ -38,7 +38,7 @@ function getFlugtag() {
 	$('#minpilotreached').addClass('d-none');
 
 	$.ajax({
-		url: 'get_flugtag.php',
+		url: 'api.php/flugtag',
 		type: 'GET',
 		data: { flugtag: flugtag_formatted },
 

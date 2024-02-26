@@ -8,7 +8,7 @@ function BetriebAusrufen(Fluggebiet) {
 	const aufbau = $('#aufbau').val();
 
 	$.ajax({
-		url: 'betriebAusrufen.php',
+		url: 'api.php/betrieb',
 		type: 'POST',
 		data: {
 			flugtag: flugtag_formatted,
@@ -36,7 +36,7 @@ function BetriebAusrufen(Fluggebiet) {
 function BetriebAbfragen() {
 	toggleSpinner(true);
 	$.ajax({
-		url: 'betriebAbfragen.php',
+		url: 'api.php/betrieb',
 		type: 'GET',
 		data: { flugtag: flugtag_formatted },
 		success: function (data) {
@@ -84,7 +84,7 @@ function BetriebAbfragen() {
 			}
 		},
 		error: function (xhr, status, error) {
-			showToast('Ups!', 'Etwas ist schiefgegangen!', 'Der Flugbetrieb konnte nicht geladen werden!', 'error');			
+			showToast('Ups!', 'Etwas ist schiefgegangen!', 'Der Flugbetrieb konnte nicht geladen werden!', 'error');
 			console.log(xhr);
 			console.log(error);
 		},

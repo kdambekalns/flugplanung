@@ -1,15 +1,18 @@
 <?php
 
+namespace JustinMueller\Flugplanung\Api;
+
 use JustinMueller\Flugplanung\Database;
 use JustinMueller\Flugplanung\Helper;
 
-require_once __DIR__ . '/vendor/autoload.php';
+class Flugtag
+{
+    public function handle(): array|false
+    {
+        Helper::checkLogin();
+        Database::connect();
 
-Helper::checkLogin();
-Database::connect();
-require 'clubs.php';
-
-$sql = "SELECT
+        $sql = "SELECT
             m.pilot_id AS Pilot_ID,
             CONCAT(m.firstname, ' ', m.lastname) AS Pilot,
             m.windenfahrer AS ist_windenfahrer,
@@ -44,21 +47,19 @@ $sql = "SELECT
         WHERE flugtag = :flugtag";
 
 
-$result = Database::query($sql, ['flugtag' => $_GET['flugtag']]);
-if ($result) {
-    $data = [];
-    foreach ($result as $row) {
-     $row['VereinId'] = (int)$row['VereinId'];
-     $row['Verein'] = $clubs[$row['VereinId']];
-     $data[] = $row;
-    }
-} else {
-    $data = 'Keine Daten vorhanden.';
-}
+        $result = Database::query($sql, ['flugtag' => $_GET['flugtag']]);
+        if ($result) {
+            require 'clubs.php';
+            $data = [];
+            foreach ($result as $row) {
+                $row['VereinId'] = (int)$row['VereinId'];
+                $row['Verein'] = $clubs[$row['VereinId']];
+                $data[] = $row;
+            }
 
-header('Content-Type: application/json');
-try {
-    echo json_encode($data, JSON_THROW_ON_ERROR);
-} catch (JsonException $e) {
-    $data = 'JSON encoding failed: ' . $e->getMessage();
+            return $data;
+        }
+
+        return false;
+    }
 }
