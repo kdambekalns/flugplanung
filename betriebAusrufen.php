@@ -1,16 +1,22 @@
 <?php
+
+use JustinMueller\Flugplanung\Database;
+use JustinMueller\Flugplanung\Helper;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-\JustinMueller\Flugplanung\Helper::checkLogin();
-\JustinMueller\Flugplanung\Database::connect();
+Helper::checkLogin();
+Database::connect();
 
-$flugtag = $_POST['flugtag'];
-$betrieb_ngl = $_POST['flugbetrieb_ngl'];
-$betrieb_hrp = $_POST['flugbetrieb_hrp'];
-$betrieb_amd = $_POST['flugbetrieb_amd'];
-$aufbau = $_POST['aufbau'];
+$sql = 'UPDATE moegliche_flugtage SET betrieb_ngl = :betrieb_ngl, betrieb_hrp = :betrieb_hrp, betrieb_amd = :betrieb_amd, aufbau = :aufbau WHERE  datum = :flugtag';
+$result = Database::insertSqlStatement($sql, [
+        'flugtag' => $_POST['flugtag'],
+        'betrieb_ngl' => $_POST['flugbetrieb_ngl'],
+        'betrieb_hrp' => $_POST['flugbetrieb_hrp'],
+        'betrieb_amd' => $_POST['flugbetrieb_amd'],
+        'aufbau' => $_POST['aufbau']
+    ]
+);
 
-$sql = "UPDATE moegliche_flugtage SET `betrieb_ngl` = '$betrieb_ngl', `betrieb_hrp` = '$betrieb_hrp', `betrieb_amd` = '$betrieb_amd', `aufbau` = '$aufbau' WHERE  `datum` = '$flugtag'";
-\JustinMueller\Flugplanung\Database::insertSqlStatement($sql);
-
-\JustinMueller\Flugplanung\Database::close();
+header('Content-Type: application/json');
+echo json_encode($result, JSON_THROW_ON_ERROR);

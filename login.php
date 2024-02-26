@@ -1,5 +1,6 @@
 <?php
 
+use JustinMueller\Flugplanung\Database;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -11,18 +12,16 @@ $error = '';
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    \JustinMueller\Flugplanung\Database::connect();
+    Database::connect();
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Retrieve the hashed password from the database
-    $sql = "SELECT * FROM mitglieder WHERE email = '$email'";
-    $result = \JustinMueller\Flugplanung\Database::query($sql);
-    \JustinMueller\Flugplanung\Database::close();
+    $sql = 'SELECT * FROM mitglieder WHERE email = :email';
+    $mitgliederData = current(Database::query($sql, ['email' => $email]));
 
-    if ($result->num_rows == 1) {
-        $mitgliederData = $result->fetch_assoc();
+    if ($mitgliederData) {
         $hashedPasswordFromDB = $mitgliederData['password'];
         unset($mitgliederData['password']);
         // Validate credentials using password_verify
