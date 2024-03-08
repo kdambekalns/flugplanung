@@ -16,9 +16,9 @@ class Database
             $port = 3306;
         } else {
             $servername = "localhost";
-            $username = "-";
-            $password = "-";
-            $dbname = "-";
+            $username = $_SERVER['DATABASE_USER'];
+            $password = $_SERVER['DATABASE_PASSWORD'];
+            $dbname = $_SERVER['DATABASE_NAME'];
             $port = 3306;
         }
 
