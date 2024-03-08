@@ -32,29 +32,10 @@ $tabs = [
         'content' => $twig->render('flugplanung.twig.html')
     ]
 ];
-
-if ($mitgliederData['vereinId'] === Helper::$configuration['clubId']) {
-    $tabs['wunschliste'] = [
-        'label' => 'Wunschliste',
-        'content' => $twig->render('wunschliste.twig.html')
-    ];
-}
-
 if ($mitgliederData['dienste_admin']) {
-    $tabs['dienste_planung'] = [
-        'label' => 'Dienste Planung',
-        'content' => $twig->render('dienste_planung.twig.html')
-    ];
     $tabs['flugtage'] = [
         'label' => 'Flugtage',
         'content' => $twig->render('flugtage.twig.html')
-    ];
-}
-
-if ($mitgliederData['vereinId'] === Helper::$configuration['clubId']) {
-    $tabs['dienste_uebersicht'] = [
-        'label' => 'Dienste',
-        'content' => $twig->render('dienste_uebersicht.twig.html')
     ];
 }
 

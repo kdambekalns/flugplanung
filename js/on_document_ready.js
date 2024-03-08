@@ -20,7 +20,9 @@ $(document).ready(function () {
     getUserWuensche();
   }
   getDashboardData();
-  getDienste();
+  if (typeof getDienste === "function") {
+    getDienste();
+  }
   fetchParaglideable();
 
   $("[id^=list_fist_choice]").on("click", function (e) {

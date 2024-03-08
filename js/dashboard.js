@@ -82,6 +82,10 @@ function populateDashboardHistory() {
     dashboardDataHistory.sort((a, b) => a.sum - b.sum);
 
     const tbody = document.querySelector('#diensteHistory tbody');
+    if (tbody === null) {
+        console.log('skip, no #diensteHistory tbody found');
+        return;
+    }
     tbody.innerHTML = ''; // Clear the table body
 
     // Populate table rows
