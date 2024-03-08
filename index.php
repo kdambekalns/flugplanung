@@ -11,8 +11,8 @@ Helper::checkLogin();
 // Access additional user data stored in the session, if available
 $mitgliederData = $_SESSION['mitgliederData'] ?? [];
 
-// HGDF club id
-$clubId = 198;
+// Milan club id
+$clubId = 150;
 
 // set up Twig
 $loader = new FilesystemLoader(__DIR__ . '/templates');
