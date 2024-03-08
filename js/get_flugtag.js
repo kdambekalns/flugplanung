@@ -112,8 +112,6 @@ function getFlugtag() {
 					newRow.append('<td>' + row.Pilot + ' ' + windenfahrer_info + ' ' + windenfahrer_official_info + ' ' + ist_startleiter + ' ' + new_record + '</td>');
 					newRow.append('<td>' + (hdgf_member ? '<strong>' : '') + row.Verein + (hdgf_member ? '</strong>' : '') + '</td>');
 					newRow.append('<td>' + replaceValueWithImage(row.NGL) + '</td>');
-					newRow.append('<td>' + replaceValueWithImage(row.HRP) + '</td>');
-					newRow.append('<td>' + replaceValueWithImage(row.AMD) + '</td>');
 					newRow.append('<td>' + row.Kommentar + '</td>');
 
 					$('#tagesplanung tbody').append(newRow);
@@ -124,8 +122,6 @@ function getFlugtag() {
 				newRow.append('<td><strong>Max. Piloten</strong></td>');
 				newRow.append('<td></td>');
 				newRow.append('<td>' + total_pilot_count_all[0] + '</td>');
-				newRow.append('<td>' + total_pilot_count_all[1] + '</td>');
-				newRow.append('<td>' + total_pilot_count_all[2] + '</td>');
 
 				newRow.append('<td></td>');
 				$('#tagesplanung tbody').append(newRow);

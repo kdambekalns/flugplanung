@@ -21,9 +21,9 @@ function getSelectedButtons() {
 
   let NGL = 0, HRP = 0, AMD = 0;
 
-  if (alternativeTitles.includes('Neustadt-Glewe')) {
+  if (alternativeTitles.includes('Kleinkummerfeld')) {
     NGL = 1;
-  } else if (!firstChoiceTitle.includes('Neustadt-Glewe')) {
+  } else if (!firstChoiceTitle.includes('Kleinkummerfeld')) {
     NGL = 2;
   }
 
