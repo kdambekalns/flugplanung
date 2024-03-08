@@ -14,7 +14,7 @@ function getFlugtag() {
 	toggleSpinner(true);
 
 	min_pilot_amount_reached = false;
-	
+
 	var now = new Date();
 	var oneHourBack = new Date();
 	oneHourBack.setHours(oneHourBack.getHours() - 1);
@@ -32,14 +32,14 @@ function getFlugtag() {
 	$("[id=list_alternative_1]").removeClass("active");
 	$("[id=list_alternative_2]").removeClass("active");
 	$("[id=list_alternative_3]").removeClass("active");
-	
+
 	$.ajax({
 		url: 'get_flugtag.php',
 		type: 'GET',
 		data: { flugtag: flugtag_formatted },
 
 		success: function (data) {
-			
+
 			if (typeof(data) === 'object') {
 				console.log('Planung für den ' + flugtag_formatted + ' erfolgreich geladen:');
 				console.log(data);
@@ -104,8 +104,6 @@ function getFlugtag() {
 					newRow.append('<td>' + row.Pilot + ' ' + windenfahrer_info + ' ' + windenfahrer_official_info + ' ' + ist_startleiter + ' ' + new_record + '</td>');
 					newRow.append('<td>' + (local_club_member ? '<strong>' : '') + row.Verein + (local_club_member ? '</strong>' : '') + '</td>');
 					newRow.append('<td>' + replaceValueWithImage(row.NGL) + '</td>');
-					newRow.append('<td>' + replaceValueWithImage(row.HRP) + '</td>');
-					newRow.append('<td>' + replaceValueWithImage(row.AMD) + '</td>');
 					newRow.append('<td>' + row.Kommentar + '</td>');
 
 					$('#tagesplanung tbody').append(newRow);
@@ -116,8 +114,6 @@ function getFlugtag() {
 				newRow.append('<td><strong>Abstimmung</td>');
 				newRow.append('<td></td>');
 				newRow.append('<td>' + pilot_count_hdgf_prio_1[0] + '</td>');
-				newRow.append('<td>' + pilot_count_hdgf_prio_1[1] + '</td>');
-				newRow.append('<td>' + pilot_count_hdgf_prio_1[2] + '</td>');
 
 				newRow.append('<td></td>');
 				$('#tagesplanung tbody').append(newRow);
@@ -127,8 +123,6 @@ function getFlugtag() {
 				newRow.append('<td><strong>Piloten maximal</strong></td>');
 				newRow.append('<td></td>');
 				newRow.append('<td>' + total_pilot_count_all[0] + '</td>');
-				newRow.append('<td>' + total_pilot_count_all[1] + '</td>');
-				newRow.append('<td>' + total_pilot_count_all[2] + '</td>');
 
 				newRow.append('<td></td>');
 				$('#tagesplanung tbody').append(newRow);
@@ -180,13 +174,13 @@ function getFlugtag() {
 					$("[id=list_fist_choice_1]").addClass("active");
 				}
 
-				
+
 
 			} else {
 				windenfahrer_official = null;
 				startleiter_official = null;
 				$("[id=list_fist_choice_1]").addClass("active");
-				
+
 			}
 
 			if (min_pilot_amount_reached) {
@@ -200,7 +194,7 @@ function getFlugtag() {
 						'<div style="margin-left: 5px;">Es ist Flugbetrieb möglich in: ' + possible_areas_sliced + '</div>' +
 					'</div>' +
 					'<div id="countdown"></div>'
-					
+
 				);
 			} else {
 				$('#minpilotreached').html(
@@ -218,7 +212,7 @@ function getFlugtag() {
 
 			updateCountdown();
 
-			
+
 		},
 
 		error: function (xhr, status, error) {
