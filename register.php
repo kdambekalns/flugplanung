@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $verein = $_POST['verein_register'];
         $fluggerät_G = isset($_POST['fluggeraet_gleitschirm']) ? 'G' : '';
         $fluggerät_D = isset($_POST['fluggeraet_drachen']) ? 'D' : '';
-        $fluggerät_S = isset($_POST['fluggeraet_sonstiges']) ? 'S' : '';    
+        $fluggerät_S = isset($_POST['fluggeraet_sonstiges']) ? 'S' : '';
         $fluggeraetCombined = $fluggerät_G . $fluggerät_D . $fluggerät_S;
         $windenfahrer = $_POST['windenfahrer_register'];
         $avatar = $_POST['avatar_register'];
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Insert new user into the database
         $insertQuery = 'INSERT INTO mitglieder
-          (email, password, firstname, lastname, verein, fluggereat, windenfahrer, avatar) VALUES
+          (email, password, firstname, lastname, verein, fluggeraet, windenfahrer, avatar) VALUES
           (:email, :hashedPassword, :vorname, :nachname, :verein, :fluggeraet, :windenfahrer, :avatar)';
         $result = Database::insertSqlStatement(
             $insertQuery,
