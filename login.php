@@ -1,12 +1,13 @@
 <?php
 
 use JustinMueller\Flugplanung\Database;
+use JustinMueller\Flugplanung\Helper;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-include 'check_login.php';
+Helper::checkLogin();
 
 $error = '';
 
