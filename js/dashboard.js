@@ -5,7 +5,7 @@ function getDashboardData() {
 
     enteredDienste = [];
     $.ajax({
-        url: 'getDashboardData.php',
+        url: 'api.php/dashboard',
         type: 'GET',
         dataType: 'json',
         data: { startDate: startDate, endDate: endDate },

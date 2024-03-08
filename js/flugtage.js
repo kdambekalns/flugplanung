@@ -23,7 +23,7 @@ function loadFlugtage(init) {
 	let endDate = formatDateString(saisonEndDate);
 
 	$.ajax({
-		url: 'fetch_flugtage.php',
+		url: 'api.php/flugtage',
 		type: 'GET',
 		data: { startDate: startDate, endDate: endDate },
 		dataType: 'json',
