@@ -10,9 +10,9 @@ class Database
     {
         if ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_ADDR'] === '127.0.0.1') {
             $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "flugplanung";
+            $username = $_SERVER['DATABASE_USER'];
+            $password = $_SERVER['DATABASE_PASSWORD'];
+            $dbname = $_SERVER['DATABASE_NAME'];
             $port = 3306;
         } else {
             $servername = "localhost";
