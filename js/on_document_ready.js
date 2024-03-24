@@ -3,6 +3,8 @@ $(document).ready(function () {
 	$('.date').datepicker({
 		language: 'de-DE',
 		weekStart: 1,
+		daysOfWeekHighlighted: [0,6],
+		todayHighlight: true,
 		format: {
 			toDisplay: function (date, format, language) {
 				return getFormattedGermanDate(date);
