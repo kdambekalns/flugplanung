@@ -47,7 +47,7 @@ function loadFlugtage(init) {
 				$('#flugtag').val(getFormattedGermanDate(startFlugtag));
 
 				getFlugtag();
-				BetriebAbfragen();
+				betriebAbfragen();
 			}
 		},
 		error: function (error) {

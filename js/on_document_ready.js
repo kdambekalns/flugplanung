@@ -21,7 +21,7 @@ $(document).ready(function () {
 		let value_from_datepicker = $('#flugtag').val();
 		flugtag_formatted = dateToSQLFormat(parseDateStringWithGermanMonth(value_from_datepicker));
 		getFlugtag();
-		BetriebAbfragen();
+		betriebAbfragen();
 	});
 
 	if (typeof getUserWuensche === 'function') {
@@ -106,7 +106,7 @@ $(document).ready(function () {
 	loadChatbox(true);
 
     var avatarDiv = document.getElementById("avatar-header");
-    var imageUrl = "img/a" + User_Information.avatar + ".png"; 
+    var imageUrl = "img/a" + User_Information.avatar + ".png";
     avatarDiv.innerHTML = "<img src='" + imageUrl + "' alt='Avatar Preview'>";
 
 	$("#avatar-header").on('click', function () {

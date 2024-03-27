@@ -1,6 +1,6 @@
 var Flugbetrieb = [false, false, false];
 
-function BetriebAusrufen(Fluggebiet) {
+function betriebAusrufen(Fluggebiet) {
 
 	toggleSpinner(true);
 	Flugbetrieb[Fluggebiet] = !Flugbetrieb[Fluggebiet]
@@ -18,7 +18,7 @@ function BetriebAusrufen(Fluggebiet) {
 			aufbau: aufbau
 		},
 		success: function (data) {
-			BetriebAbfragen();
+			betriebAbfragen();
 			showToast('Juhu!', 'Das hat geklappt', 'Die Änderung in dem Betrieb wurde gespeichert!', 'success');
 		},
 		error: function (xhr, status, error) {
@@ -33,7 +33,7 @@ function BetriebAusrufen(Fluggebiet) {
 	});
 }
 
-function BetriebAbfragen() {
+function betriebAbfragen() {
 	toggleSpinner(true);
 	$.ajax({
 		url: 'api.php/betrieb',
