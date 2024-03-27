@@ -43,7 +43,7 @@ function openRegisterForm() {
 }
 
 function forgotPassword() {
-	alert('Funktion ist noch in Arbeit. Bitte bei Justin melden!');
+	alert('Funktion ist noch in Arbeit. Bitte bei Karsten melden!');
 }
 
 function updatePreview() {
@@ -51,7 +51,7 @@ function updatePreview() {
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     var previewDiv = document.getElementById("avatar-preview");
 
-    var imageUrl = "img/a" + selectedValue + ".png"; 
+    var imageUrl = "img/a" + selectedValue + ".png";
 
     previewDiv.innerHTML = "<img src='" + imageUrl + "' alt='Avatar Preview'>";
   }
