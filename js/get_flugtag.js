@@ -234,10 +234,9 @@ function getFlugtag() {
 
 			$('#user_name_header').html('Hallo, ' + User_Information.firstname + '! ' + Startleiterinfotext + Windenfahrerinfotext);
 
-			//Banner für Flugbetrieb ausrufen
-			if (Active_User_Is_Startleiter || Active_User_Is_Windenfahrer) {
+			// Banner für Flugbetrieb ausrufen
+			if (Active_User_Is_Startleiter || (User_Information.windenfahrer && User_Information.vereinId === localClubId)) {
 				$('#flugbetriebAusrufen').removeClass('d-none');
-				$('#eintraege').addClass('d-none');
 			} else {
 				$('#flugbetriebAusrufen').addClass('d-none');
 				$('#eintraege').removeClass('d-none');
