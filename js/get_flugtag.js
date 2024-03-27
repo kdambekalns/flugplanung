@@ -102,15 +102,15 @@ function getFlugtag() {
 					let timestamp = new Date(row.timestamp);
 					let time_ago = Math.round((now - timestamp) / 60000);
 					let new_record = (timestamp >= oneHourBack && timestamp <= now) ? '<span class="badge bg-info">Neu vor ' + time_ago + ' min</span>' : '';
-					let hdgf_member = row.VereinId === localClubId;
-					let row_not_hdgf = hdgf_member ? '' : 'class="tr_no_hgdf"';
+					let local_club_member = row.VereinId === localClubId;
+					let row_not_local_club_member = local_club_member ? '' : 'class="tr_no_hgdf"';
 					let ist_startleiter = row.Pilot_ID == startleiter_official ? '<span class="badge bg-success">SL Offiziell</span>' : '';
 					let windenfahrer_official_info = row.Pilot_ID == windenfahrer_official ? '<span class="badge bg-success">WF Offiziell</span>' : '';
 					let windenfahrer_info = (row.ist_windenfahrer == 1 && row.Pilot_ID != windenfahrer_official) ? '<span class="badge bg-primary">WF</span>' : '';
-					var newRow = $('<tr ' + row_not_hdgf + '>');
+					var newRow = $('<tr ' + row_not_local_club_member + '>');
 
 					newRow.append('<td>' + row.Pilot + ' ' + windenfahrer_info + ' ' + windenfahrer_official_info + ' ' + ist_startleiter + ' ' + new_record + '</td>');
-					newRow.append('<td>' + (hdgf_member ? '<strong>' : '') + row.Verein + (hdgf_member ? '</strong>' : '') + '</td>');
+					newRow.append('<td>' + (local_club_member ? '<strong>' : '') + row.Verein + (local_club_member ? '</strong>' : '') + '</td>');
 					newRow.append('<td>' + replaceValueWithImage(row.NGL) + '</td>');
 					newRow.append('<td>' + row.Kommentar + '</td>');
 
@@ -185,16 +185,16 @@ function getFlugtag() {
 		complete: function () {
 
 			toggleSpinner(false);
-			let Active_User_Is_Startleiter = User_Information.pilot_id == startleiter_official;
-			let Active_User_Is_Windenfahrer = User_Information.pilot_id == windenfahrer_official;
+			let Active_User_Is_Official_Startleiter = User_Information.pilot_id == startleiter_official;
+			let Active_User_Is_Official_Windenfahrer = User_Information.pilot_id == windenfahrer_official;
 
-			let Startleiterinfotext = Active_User_Is_Startleiter ? ' <br>Du bist für diesen Tag Startleiter!' : '';
-			let Windenfahrerinfotext = Active_User_Is_Windenfahrer ? ' <br>Du bist für diesen Tag Windenfahrer!' : '';
+			let Startleiterinfotext = Active_User_Is_Official_Startleiter ? ' <br>Du bist für diesen Tag Startleiter!' : '';
+			let Windenfahrerinfotext = Active_User_Is_Official_Windenfahrer ? ' <br>Du bist für diesen Tag Windenfahrer!' : '';
 
 			$('#user_name_header').html('Hallo, ' + User_Information.firstname + ' ' + User_Information.lastname + '! ' + Startleiterinfotext + Windenfahrerinfotext);
 
-			//Banner für Flugbetrieb ausrufen
-			if (Active_User_Is_Startleiter) {
+			// Banner für Flugbetrieb ausrufen
+			if (Active_User_Is_Official_Startleiter) {
 				$('#flugbetriebAusrufen').removeClass('d-none');
 				$('#eintraege').addClass('d-none');
 			} else {
@@ -202,7 +202,7 @@ function getFlugtag() {
 				$('#eintraege').removeClass('d-none');
 			}
 
-			if (Active_User_Is_Windenfahrer) {
+			if (Active_User_Is_Official_Windenfahrer) {
 				$('#btn_enter').addClass('d-none');
 			}
 		}
