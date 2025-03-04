@@ -267,3 +267,31 @@ function replaceValueWithImage(value) {
 
 	return '<img src="img/' + value + '.png" class="table-image aircraft">';
 }
+
+function fetchParaglideable() {
+	$.ajax({
+		url: 'paraglideable.php',
+		type: 'GET',
+		success: function (data) {
+			if (data === null) {
+				document.getElementById('paraglideable-forecast').hidden = true;
+			} else if (data[flugtag_formatted]) {
+				document.getElementById('forecast-fly').value = data[flugtag_formatted][0].forecast.fly;
+				document.getElementById('forecast-fly').style.opacity = 1;
+				document.getElementById('forecast-xc').value = data[flugtag_formatted][0].forecast.XC;
+				document.getElementById('forecast-xc').style.opacity = 1;
+				document.getElementById('paraglideable-forecast').querySelector('a').setAttribute('href', 'https://paraglidable.com/?lat=' + data[flugtag_formatted][0].lat + '&lon=' + data[flugtag_formatted][0].lon + '&zoom=11');
+			} else {
+				document.getElementById('forecast-fly').value = 0;
+				document.getElementById('forecast-fly').style.opacity = .2;
+				document.getElementById('forecast-xc').value = 0;
+				document.getElementById('forecast-xc').style.opacity = .2;
+				document.getElementById('paraglideable-forecast').querySelector('a').setAttribute('href', 'https://paraglidable.com/');
+			}
+		},
+		error: function (xhr, status, error) {
+			console.log(xhr);
+			console.log(error);
+		}
+	});
+}

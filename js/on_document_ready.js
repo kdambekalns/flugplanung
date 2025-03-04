@@ -13,6 +13,7 @@ $(document).ready(function () {
     calc_deadline(flugtag_unformatted);
     getFlugtag();
     betriebAbfragen();
+    fetchParaglideable();
   });
 
   if (typeof getUserWuensche === "function") {
@@ -20,6 +21,7 @@ $(document).ready(function () {
   }
   getDashboardData();
   getDienste();
+  fetchParaglideable();
 
   $("[id^=list_fist_choice]").on("click", function (e) {
     if (!$(this).hasClass("active"))

@@ -387,3 +387,7 @@ img.table-image.aircraft {
 img.table-image.vote {
     height: 20px;
 }
+
+#paraglideable-forecast a {
+	color: var(--bs-link-color);
+}
